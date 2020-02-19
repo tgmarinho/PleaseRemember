@@ -47,7 +47,11 @@ export default class NotifyService {
       autoCancel: true, // (optional) default: true
       largeIcon: 'ic_launcher', // (optional) default: "ic_launcher"
       smallIcon: 'ic_notification', // (optional) default: "ic_notification" with fallback for "ic_launcher"
-      bigText: 'My big text that will be shown when notification is expanded', // (optional) default: "message" prop
+      bigText: `Oi gravidinha linda ❤❤👶🏻💝
+      🥭🍍🍌🍉🧃🍽 Já comeu? 
+      🥤🧊🥃🍸🍹🧉 Já tomou água?  
+        💁🏻‍♀🙆🏻‍♀💅🏻💆🏻‍♂💆🏻‍♀🧖🏻‍♀ Tá pegando leve? 
+        Te amo, se cuida!! 😍🥰😘`,
       subText: 'This is a subText', // (optional) default: none
       color: 'red', // (optional) default: system default
       vibrate: true, // (optional) default: true
@@ -67,7 +71,7 @@ export default class NotifyService {
       playSound: false, // (optional) default: true
       soundName: 'default', // (optional) Sound to play when the notification is shown. Value of 'default' plays the default sound. It can be set to a custom sound such as 'android.resource://com.xyz/raw/my_sound'. It will look for the 'my_sound' audio file in 'res/raw' directory and play it. default: 'default' (default sound is played)
       number: '10', // (optional) Valid 32 bit integer specified as string. default: none (Cannot be zero)
-      actions: '["Yes", "No"]', // (Android only) See the doc for notification actions to know more
+      // actions: '["Yes", "No"]', // (Android only) See the doc for notification actions to know more
     });
   }
 
@@ -82,7 +86,12 @@ export default class NotifyService {
       autoCancel: true, // (optional) default: true
       largeIcon: 'ic_launcher', // (optional) default: "ic_launcher"
       smallIcon: 'ic_notification', // (optional) default: "ic_notification" with fallback for "ic_launcher"
-      bigText: 'My big text that will be shown when notification is expanded', // (optional) default: "message" prop
+      bigText:
+        'Oi gravidinha linda ❤❤👶🏻💝' +
+        '\n 🥭🍍🍌🍉🧃🍽 Já comeu?' +
+        '\n 🥤🧊🥃🍸🍹🧉 Já tomou água? ' +
+        '\n 💁🏻‍♀🙆🏻‍♀💅🏻💆🏻‍♂💆🏻‍♀🧖🏻‍♀ Tá pegando leve?' +
+        '\nTe amo, se cuida!! 😍🥰😘',
       subText: 'This is a subText', // (optional) default: none
       color: 'blue', // (optional) default: system default
       vibrate: true, // (optional) default: true
