@@ -1,8 +1,8 @@
 import React, {useRef, useState, useEffect} from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import Background from '~/components/Background';
+import Background from '../../components/Background';
 Icon.loadFont();
-import Header from '~/components/Header';
+// import Header from '../../components/Header';
 
 import {
   Container,
@@ -38,7 +38,7 @@ export default function AddNotification() {
   return (
     <Background>
       <Container>
-        <Header />
+        {/* <Header /> */}
 
         <Form>
           <FormInput

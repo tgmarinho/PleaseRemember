@@ -3,7 +3,9 @@ import {Text, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-function AddNotification() {
+import AddNotification from './pages/AddNotification';
+
+function AddNotificationx() {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <Text>ADd new Push!</Text>
