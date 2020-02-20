@@ -2,106 +2,95 @@ import React, {useRef, useState, useEffect} from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Background from '../../components/Background';
 Icon.loadFont();
-// import Header from '../../components/Header';
-
+import Header from '../../components/Header';
+import {Picker, Text, View, StyleSheet} from 'react-native';
+import Select from '../../components/Select';
+import SelectItem from '../../components/Select/styles';
 import {
   Container,
   Separator,
   Form,
   FormInput,
+  FormInputBig,
   SubmitButton,
-  LogoutButton,
 } from './styles';
 
 export default function AddNotification() {
-  const emailRef = useRef();
-  const oldPasswordRef = useRef();
-  const passwordRef = useRef();
-  const confirmPasswordRef = useRef();
+  const smallTextRef = useRef();
+  const bigTextRef = useRef();
+  const timeRef = useRef();
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [oldPassword, setOldPassword] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [title, setTitle] = useState('');
+  const [smallText, setSmallText] = useState('');
+  const [bigText, setBigText] = useState('');
+  const [time, setTime] = useState('');
 
   useEffect(() => {
-    setOldPassword('');
-    setPassword('');
-    setConfirmPassword('');
+    setSmallText('');
+    setBigText('');
+    setTime('');
+    setTitle('');
   }, []);
 
   function handleSubmit() {}
 
-  function handleLogout() {}
-
   return (
     <Background>
       <Container>
-        {/* <Header /> */}
+        <Header />
 
         <Form>
           <FormInput
-            icon="person-outline"
+            icon="title"
             autoCorrect={false}
             autoCapitalize="none"
-            placeholder="Nome completo"
+            placeholder="Informe Título"
             returnKeyType="next"
-            onSubmitEditing={() => emailRef.current.focus()}
-            value={name}
-            onChangeText={setName}
+            onSubmitEditing={() => smallTextRef.current.focus()}
+            value={title}
+            onChangeText={setTitle}
           />
 
           <FormInput
-            icon="mail-outline"
-            keyboardType="email-address"
+            icon="create"
             autoCorrect={false}
             autoCapitalize="none"
-            placeholder="Digite seu e-mail"
-            ref={emailRef}
+            placeholder="Texto pequeno"
+            ref={smallTextRef}
             returnKeyType="next"
-            onSubmitEditing={() => oldPasswordRef.current.focus()}
-            value={email}
-            onChangeText={setEmail}
+            onSubmitEditing={() => bigTextRef.current.focus()}
+            value={smallText}
+            onChangeText={setSmallText}
+          />
+
+          <FormInputBig
+            multiline={true}
+            numberOfLines={4}
+            icon="format-align-justify"
+            autoCorrect={false}
+            autoCapitalize="none"
+            placeholder="Texto grande"
+            ref={bigTextRef}
+            returnKeyType="next"
+            onSubmitEditing={() => timeRef.current.focus()}
+            value={bigText}
+            onChangeText={setBigText}
+          />
+
+          <FormInput
+            icon="access-alarm"
+            autoCorrect={false}
+            autoCapitalize="none"
+            placeholder="A cada 2h ou 4h ou 15h..."
+            returnKeyType="send"
+            onSubmitEditing={handleSubmit}
+            value={time}
+            onChangeText={setTime}
           />
 
           <Separator />
 
-          <FormInput
-            icon="lock-outline"
-            secureTextEntry
-            placeholder="Senha atual"
-            ref={oldPasswordRef}
-            returnKeyType="next"
-            onSubmitEditing={() => passwordRef.current.focus()}
-            value={oldPassword}
-            onChangeText={setOldPassword}
-          />
-
-          <FormInput
-            icon="lock-outline"
-            secureTextEntry
-            placeholder="Nova senha"
-            ref={passwordRef}
-            returnKeyType="next"
-            onSubmitEditing={() => confirmPasswordRef.current.focus()}
-            value={password}
-            onChangeText={setPassword}
-          />
-
-          <FormInput
-            icon="lock-outline"
-            secureTextEntry
-            placeholder="Confirmação de senha"
-            ref={confirmPasswordRef}
-            returnKeyType="send"
-            onSubmitEditing={handleSubmit}
-            value={confirmPassword}
-            onChangeText={setConfirmPassword}
-          />
-
-          <SubmitButton onPress={handleSubmit}>Salvar perfil</SubmitButton>
-          <LogoutButton onPress={handleLogout}>Sair do Meetup</LogoutButton>
+          <SubmitButton onPress={handleSubmit}>Adicionar</SubmitButton>
         </Form>
       </Container>
     </Background>
@@ -109,8 +98,16 @@ export default function AddNotification() {
 }
 
 AddNotification.navigationOptions = {
-  tabBarLabel: 'Meu perfil',
+  tabBarLabel: 'Add',
   tabBarIcon: ({tintColor}) => (
     <Icon name="person" size={24} color={tintColor} />
   ),
 };
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 30,
+    alignSelf: 'center',
+    color: 'red',
+  },
+});
