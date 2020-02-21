@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import AddNotification from './pages/AddNotification';
+import ListNotifications from './pages/ListNotifications';
 
 function AddNotificationx() {
   return (
@@ -13,13 +14,13 @@ function AddNotificationx() {
   );
 }
 
-function ListNotifications() {
-  return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>List All Push!</Text>
-    </View>
-  );
-}
+// function ListNotifications() {
+//   return (
+//     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+//       <Text>List All Push!</Text>
+//     </View>
+//   );
+// }
 
 const Tab = createBottomTabNavigator();
 
