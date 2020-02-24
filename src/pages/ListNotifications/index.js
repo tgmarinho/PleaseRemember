@@ -4,30 +4,35 @@ import {withNavigationFocus} from '@react-navigation/compat';
 import Background from '../../components/Background';
 import Notification from '../../components/Notification';
 import {Container, Title, List} from './styles';
+import {useAsyncStorage} from '@react-native-community/async-storage';
+
 // import api from '~/services/api';
 import {Text} from 'react-native';
 
 function ListNotifications({isFocused}) {
-  const [notifications, setNotifications] = useState([
-    1,
-    2,
-    3,
-    4,
-    1,
-    1,
-    1,
-    2,
-    2,
-  ]);
+  const {getItem, setItem, mergeItem, removeItem} = useAsyncStorage(
+    '@PLEASEREMEMBER',
+  );
 
-  async function loadAppointments() {
-    // const response = await api.get('/appointments');
-    // setAppointments(response.data);
+  const [notifications, setNotifications] = useState([]);
+
+  // const readItemFromStorage = async () => {
+  //   const item = await getItem();
+  //   setNotifications(item);
+  //   console.tron.log(item);
+  //   // console.tron.log(value);
+  // };
+
+  async function loadNotifications() {
+    const item = await getItem();
+    const parsed = await JSON.parse(item);
+    setNotifications(parsed);
+    console.tron.log('loadNotifications:', notifications);
   }
 
   useEffect(() => {
     if (isFocused) {
-      loadAppointments();
+      loadNotifications();
     }
   }, [isFocused]);
 
@@ -53,7 +58,9 @@ function ListNotifications({isFocused}) {
         <List
           data={notifications}
           keyExtractor={item => String(item.id)}
-          renderItem={({item}) => <Notification onCancel={() => {}} />}
+          renderItem={({item}) => (
+            <Notification data={item} onCancel={() => {}} />
+          )}
         />
       </Container>
     </Background>

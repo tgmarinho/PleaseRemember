@@ -27,7 +27,7 @@ const dataFAke = {
   active: true,
 };
 
-export default function Notification({data = dataFAke, onCancel}) {
+export default function Notification({data, onCancel}) {
   // const dateParsed = useMemo(() => {
   //   return formatRelative(parseISO(data.date), new Date(), {
   //     locale: pt,
@@ -35,10 +35,14 @@ export default function Notification({data = dataFAke, onCancel}) {
   //   });
   // }, [data.date]);
 
+  // console.tron.log('Notifications', data);
+
   function handlerHere() {}
 
+  console.log('DATA: ', data);
+
   return (
-    <Background past={data.past}>
+    <Background>
       <Left>
         <Info>
           <Title>{`${data.title} / ${data.smallText}`}</Title>

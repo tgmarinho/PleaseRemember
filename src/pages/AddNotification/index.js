@@ -4,7 +4,8 @@ import Background from '../../components/Background';
 import {useAsyncStorage} from '@react-native-community/async-storage';
 import {showMessage, hideMessage} from 'react-native-flash-message';
 Icon.loadFont();
-
+import {withNavigationFocus} from '@react-navigation/compat';
+import NotifyService from '../../services/NotifyService';
 import Header from '../../components/Header';
 import {Picker, Text, View, StyleSheet} from 'react-native';
 import Select from '../../components/Select';
@@ -18,7 +19,7 @@ import {
   SubmitButton,
 } from './styles';
 
-export default function AddNotification() {
+function AddNotification({isFocused}) {
   const smallTextRef = useRef();
   const bigTextRef = useRef();
   const timeRef = useRef();
@@ -39,10 +40,13 @@ export default function AddNotification() {
   };
 
   useEffect(() => {
-    setSmallText('');
-    setBigText('');
-    setTime('');
-    setTitle('');
+    if (isFocused) {
+      setSmallText('');
+      setBigText('');
+      setTime('');
+      setTitle('');
+    }
+
     // removeItem();
     readItemFromStorage();
   }, []);
@@ -57,13 +61,29 @@ export default function AddNotification() {
       console.tron.log(oldValues);
       // oldValues !== null ? setItem(JSON.stringify([{title, bigText, time, smallText}]))
 
+      // validate()
+
+      // remove alfa
+      let timeToCalc = time.replace(/\D/g, '');
+      let dayHourMonthYearWeek = time.replace(/\d/g, '');
+
+      const n = new NotifyService();
+      n.scheduleNotif();
+
+      const newValues = {
+        id: new Date().getTime(),
+        title,
+        bigText,
+        time,
+        smallText,
+        active: true,
+        timeToCalc,
+      };
+
       setItem(
         oldValues !== null
-          ? JSON.stringify([
-              ...JSON.parse(oldValues),
-              {title, bigText, time, smallText},
-            ])
-          : JSON.stringify([{title, bigText, time, smallText}]),
+          ? JSON.stringify([...JSON.parse(oldValues), newValues])
+          : JSON.stringify([]),
       );
     } catch (e) {
       showMessage({
@@ -135,6 +155,8 @@ export default function AddNotification() {
     </Background>
   );
 }
+
+export default withNavigationFocus(AddNotification);
 
 AddNotification.navigationOptions = {
   tabBarLabel: 'Add',
