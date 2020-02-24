@@ -1,7 +1,10 @@
 import React, {useRef, useState, useEffect} from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Background from '../../components/Background';
+import {useAsyncStorage} from '@react-native-community/async-storage';
+import {showMessage, hideMessage} from 'react-native-flash-message';
 Icon.loadFont();
+
 import Header from '../../components/Header';
 import {Picker, Text, View, StyleSheet} from 'react-native';
 import Select from '../../components/Select';
@@ -19,20 +22,56 @@ export default function AddNotification() {
   const smallTextRef = useRef();
   const bigTextRef = useRef();
   const timeRef = useRef();
-
   const [title, setTitle] = useState('');
   const [smallText, setSmallText] = useState('');
   const [bigText, setBigText] = useState('');
   const [time, setTime] = useState('');
+  const [value, setValue] = useState([]);
+  const {getItem, setItem, mergeItem, removeItem} = useAsyncStorage(
+    '@PLEASEREMEMBER',
+  );
+
+  const readItemFromStorage = async () => {
+    const item = await getItem();
+    setValue(item);
+    console.tron.log(item);
+    // console.tron.log(value);
+  };
 
   useEffect(() => {
     setSmallText('');
     setBigText('');
     setTime('');
     setTitle('');
+    // removeItem();
+    readItemFromStorage();
   }, []);
 
-  function handleSubmit() {}
+  async function handleSubmit() {
+    try {
+      showMessage({
+        message: 'Notificação criada com sucesso!',
+        type: 'success',
+      });
+      let oldValues = await getItem();
+      console.tron.log(oldValues);
+      // oldValues !== null ? setItem(JSON.stringify([{title, bigText, time, smallText}]))
+
+      setItem(
+        oldValues !== null
+          ? JSON.stringify([
+              ...JSON.parse(oldValues),
+              {title, bigText, time, smallText},
+            ])
+          : JSON.stringify([{title, bigText, time, smallText}]),
+      );
+    } catch (e) {
+      showMessage({
+        message: 'Ops! Falha na criação da Notificação!',
+        type: 'error',
+      });
+    }
+  }
 
   return (
     <Background>
