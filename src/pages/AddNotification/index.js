@@ -7,7 +7,7 @@ Icon.loadFont();
 import {withNavigationFocus} from '@react-navigation/compat';
 import NotifyService from '../../services/NotifyService';
 import Header from '../../components/Header';
-import {Picker, Text, View, StyleSheet} from 'react-native';
+import {Picker, Text, View, StyleSheet, Platform} from 'react-native';
 import Select from '../../components/Select';
 import SelectItem from '../../components/Select/styles';
 import {
@@ -67,8 +67,15 @@ function AddNotification({isFocused}) {
       let timeToCalc = time.replace(/\D/g, '');
       let dayHourMonthYearWeek = time.replace(/\d/g, '');
 
-      const n = new NotifyService();
-      n.scheduleNotif();
+      // if (Platform.OS !== 'ios') {
+      try {
+        const n = new NotifyService();
+        n.scheduleNotif();
+      } catch (e) {
+        console.tron.log('deuu eroo', e);
+      }
+
+      // }
 
       const newValues = {
         id: new Date().getTime(),

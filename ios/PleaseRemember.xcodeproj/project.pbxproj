@@ -64,6 +64,7 @@
 		86558379D692FE0EC15A850A /* Pods-PleaseRemember-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PleaseRemember-tvOS.release.xcconfig"; path = "Target Support Files/Pods-PleaseRemember-tvOS/Pods-PleaseRemember-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		89465721592EA48549301DBC /* Pods-PleaseRemember-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PleaseRemember-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-PleaseRemember-tvOSTests/Pods-PleaseRemember-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8C3A38E66FD28CB4C6B75C92 /* Pods-PleaseRememberTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PleaseRememberTests.release.xcconfig"; path = "Target Support Files/Pods-PleaseRememberTests/Pods-PleaseRememberTests.release.xcconfig"; sourceTree = "<group>"; };
+		975277A12407F8BE00041BF5 /* PleaseRemember.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = PleaseRemember.entitlements; path = PleaseRemember/PleaseRemember.entitlements; sourceTree = "<group>"; };
 		E5C88B91F329830666071BD6 /* Pods-PleaseRememberTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PleaseRememberTests.debug.xcconfig"; path = "Target Support Files/Pods-PleaseRememberTests/Pods-PleaseRememberTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -134,13 +135,13 @@
 				E5C88B91F329830666071BD6 /* Pods-PleaseRememberTests.debug.xcconfig */,
 				8C3A38E66FD28CB4C6B75C92 /* Pods-PleaseRememberTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
 		13B07FAE1A68108700A75B9A /* PleaseRemember */ = {
 			isa = PBXGroup;
 			children = (
+				975277A12407F8BE00041BF5 /* PleaseRemember.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -286,7 +287,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -306,7 +307,7 @@
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "PleaseRemember" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -675,6 +676,7 @@
 			baseConfigurationReference = 20FE3995459DB3A09126AA4F /* Pods-PleaseRemember.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PleaseRemember/PleaseRemember.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				INFOPLIST_FILE = PleaseRemember/Info.plist;
@@ -695,6 +697,7 @@
 			baseConfigurationReference = 0C42B68B9EF98CBB1802ED44 /* Pods-PleaseRemember.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PleaseRemember/PleaseRemember.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = PleaseRemember/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -823,6 +826,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -876,6 +880,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
